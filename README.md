@@ -1,24 +1,24 @@
-#Refresh
-##Group Project 1
+# Refresh
+## Group Project 1
 
 ---
 
-**#Project Refresh**
-**##Murad Alkaylanie, Macenna Cowen, Sulayman Sallah##**
+**# Project Refresh**
+**## Murad Alkaylanie, Macenna Cowen, Sulayman Sallah**
 
-**##Description**
+**## Description**
 
 This project allows users to search for outdoor activities that they can do within a certain distance of their location.
 
 ---
 
-**##UI Mockup**
+**## UI Mockup**
 
 ![Refresh Demo Home](RefreshDemo.png)
 
 ---
 
-##APIs Used
+## APIs Used
 
 - FourSquare: https://developer.foursquare.com/docs/places-api/
 - Running Trails: https://www.trailrunproject.com/data
@@ -30,7 +30,7 @@ This project allows users to search for outdoor activities that they can do with
 
 ---
 
-###Team Member Roles
+### Team Member Roles
 
 Murad:
 - JavaScript
