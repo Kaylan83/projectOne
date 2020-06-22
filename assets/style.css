@@ -1,7 +1,9 @@
 
 body {
     background-image: url("refresh.jpg");
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 2000px;
+    
 }
 
 .margin-top{
