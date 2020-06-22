@@ -1,9 +1,14 @@
 
 body {
     background-image: url("refresh.jpg");
+<<<<<<< HEAD
     background-repeat: no-repeat;
     background-size: 2000px;
     
+=======
+    background-attachment: fixed;
+    background-size: cover;
+>>>>>>> f9804b587276c51d4ec29d37253ec1f465fa72ae
 }
 
 .margin-top{
@@ -14,3 +19,25 @@ margin-top: 100px;
 .button-margin {
     margin-top: 20px;
 }
+
+
+.cardLocation {
+    font-size: 20px;
+    font-weight: 600;
+}
+.noPicTitle {
+    color: white;
+    font-size:25px;
+    font-weight: 600;
+}
+
+.distance {
+    font-weight: 600;
+    font-size: 17px;
+    font-style: italic;
+}
+.card{ 
+    /* height: 40%;  */
+}
+
+
