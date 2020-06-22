@@ -1,6 +1,7 @@
 
 body {
     background-image: url("refresh.jpg");
+    background-attachment: fixed;
     background-size: cover;
 }
 
@@ -13,6 +14,24 @@ margin-top: 100px;
     margin-top: 20px;
 }
 
-.pac-container {
-    /* background-color: transparent; */
+
+.cardLocation {
+    font-size: 20px;
+    font-weight: 600;
 }
+.noPicTitle {
+    color: white;
+    font-size:25px;
+    font-weight: 600;
+}
+
+.distance {
+    font-weight: 600;
+    font-size: 17px;
+    font-style: italic;
+}
+.card{ 
+    /* height: 40%;  */
+}
+
+
