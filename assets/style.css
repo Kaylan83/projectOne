@@ -51,3 +51,27 @@ margin-top: 100px;
 #results .card img {
     max-width: 100%;
 }
+
+
+@media (max-width:1200px){
+    #results {
+        columns: 2;
+        width: calc(100% - 40px);
+        box-sizing: border-box;
+        padding: 20px 20px 20px 0;
+    }
+}
+
+ /* @media (max-width:768px){
+    #results {
+        columns: 2;
+
+    }
+}  */
+
+@media (max-width:768px){
+    #results {
+        columns: 1;
+
+    }
+}

@@ -14,6 +14,8 @@ $(document).ready(function () {
     // Clear page from last search
     $("#results").empty();
 
+
+
     // Set filter var to activity user chose
     console.log($(".select-dropdown").val());
     var filter = $(".select-dropdown").val();
@@ -49,6 +51,9 @@ $(document).ready(function () {
         var lat = coordinates.lat;
         var long = coordinates.lng;
 
+
+        
+               
         var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
 
         // If user chose rock climbing, get climbing sites
@@ -67,7 +72,7 @@ $(document).ready(function () {
               // For each climbing route construct a card containing its information and append it to results div 
               // If route has no pictures, construct it differently
               if(routes[index].imgMedium != "") {
-                var climbCardCol = $('<div class="col s4 m4 l4">');
+                var climbCardCol = $('<div class="col s4 m4 l4 ">');
                 var climbCardCard = $('<div class="card">');
                 var climbCardImgDiv = $('<div class="card-image">');
                 var climbCardImg = $('<img>');
@@ -97,7 +102,7 @@ $(document).ready(function () {
                 $("#results").append(climbCardCol);
               } else{
                 var climbCardDiv = $('<div class=""></div>');
-                var climbCardCol = $('<div class="col s4 m4 l4">');
+                var climbCardCol = $('<div class="col s4 m4 l4 ">');
                 var climbCardCard = $('<div class="card">');
                 var climbCardTitle = $('<span class="card-title noPicTitle">');
                 climbCardTitle.text(routes[index].name);
@@ -128,7 +133,7 @@ $(document).ready(function () {
 
       // else if user chose running, get running trails in area
 
-      } else if(filter ==="Running"){
+      } else if(filter ==="Biking-Running"){
 
         // add lat and long to running trails request url
         var runningURL = "https://www.trailrunproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-fc87acc5b1a3694eb83d3a30cc324456";
@@ -147,8 +152,8 @@ $(document).ready(function () {
             // For each running trail construct a card containing its information and append it to results div 
             // If trail has no pictures, construct it differently
             if(runningTrails[index].imgMedium != "") {
-              var runCardCol = $('<div class="col s4 m4 l4">');
-              var runCardCard = $('<div class="card">');
+              var runCardCol = $('<div class="col s4 m4 l4 offset-s3">');
+              var runCardCard = $('<div class="card ">');
               var runCardImgDiv = $('<div class="card-image">');
               var runCardImg = $('<img>');
               runCardImg.attr("src", runningTrails[index].imgMedium);
@@ -180,8 +185,8 @@ $(document).ready(function () {
               $("#results").append(runCardCol);
             } else{
               var runCardDiv = $('<div class=""></div>');
-              var runCardCol = $('<div class="col s4 m4 l4">');
-              var runCardCard = $('<div class="card">');
+              var runCardCol = $('<div class="col s4 m4 l4 offset-s3">');
+              var runCardCard = $('<div class="card ">');
               var runCardTitle = $('<span class="card-title noPicTitle">');
               runCardTitle.text(runningTrails[index].name);
               var runCardTextDiv = $('<div class="card-content">');
