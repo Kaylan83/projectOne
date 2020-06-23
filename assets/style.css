@@ -1,8 +1,8 @@
 
 body {
     background-image: url("refresh.jpg");
-    background-size: 2000px;
-    
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .margin-top{
