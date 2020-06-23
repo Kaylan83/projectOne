@@ -127,9 +127,9 @@ $(document).ready(function () {
 
 
       // else if user chose running, get running trails in area
-      } 
-      
-      else if(filter ==="Running"){
+
+      } else if(filter ==="Running"){
+
         // add lat and long to running trails request url
         var runningURL = "https://www.trailrunproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-fc87acc5b1a3694eb83d3a30cc324456";
         $.ajax({
@@ -159,7 +159,7 @@ $(document).ready(function () {
               runCardLocation.text(runningTrails[index].location);
               var runCardText = $('<p class=""></p>');
               runCardText.text(runningTrails[index].summary)
-              
+
               var runCardDistance = $('<p class="distance"></p>');
               runCardDistance.text(runningTrails[index].length + " miles");
               var runCardLinkDiv = $('<div class="card-action">')
