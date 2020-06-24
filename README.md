@@ -3,16 +3,16 @@
 
 ---
 
-**# Project Refresh**
-**## Murad Alkaylanie, Macenna Cowen, Sulayman Sallah**
+# Project Refresh
+**Murad Alkaylanie, Macenna Cowen, Sulayman Sallah**
 
-**## Description**
+## Description
 
 This project allows users to search for outdoor activities that they can do within a certain distance of their location.
 
 ---
 
-**## UI Mockup**
+## UI Mockup
 
 ![Refresh Demo Home](RefreshDemo.png)
 
