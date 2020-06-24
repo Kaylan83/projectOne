@@ -1,6 +1,7 @@
 $(document).ready(function () {
+ 
   $('select').formSelect();
-
+  
 
   //Add autocomplete functionality to our search input text field
   var input = document.getElementById('pac-input');
@@ -53,6 +54,39 @@ $(document).ready(function () {
 
 
         
+        var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat +"&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245";
+        
+        
+        $.ajax({
+          url: weatherAPI,
+          method: "GET"
+        }).then(function (response) {
+          console.log(response)
+          
+          var name = response.name;
+          
+          var temp = response.main.temp;
+          var feelsLike = response.main.feels_like;
+          var tempMax = response.main.temp_max;
+          var tempMin = response.main.temp_min;
+          var humidity = response.main.humidity;
+          var pressure = response.main.pressure;
+        
+         
+          console.log(name)
+          console.log(temp)
+          console.log(feelsLike)
+          console.log(tempMax)
+          console.log(tempMin)
+          console.log(humidity)
+         console.log(pressure)
+         $("#temp").text("The tempreture is: " + temp);
+         $("#feelsLike").text("The tempreture feels like: " + feelsLike);
+         $("#max").text("The maximum tempreture is: " + tempMax);
+         $("#min").text("The minmum Tempreture is: " + tempMin);
+         $("#humidity").text("Humidity is: " + humidity);
+         $("#weather").attr("style", "visibility:visible");
+        });
                
         var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
 
@@ -221,5 +255,7 @@ $(document).ready(function () {
     }
 
   });
+
+  
 
 });
