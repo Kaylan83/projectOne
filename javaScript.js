@@ -62,36 +62,21 @@ $(document).ready(function () {
         }).then(function (response) {
           console.log(response)
 
-          var name = response.name;
 
           var temp = Math.round((response.main.temp - 273.15) * 9 / 5 + 32);
           var feelsLike = Math.round((response.main.feels_like - 273.15) * 9 / 5 + 32);
           var tempMax = Math.round((response.main.temp_max - 273.15) * 9 / 5 + 32);
           var tempMin = Math.round((response.main.temp_min - 273.15) * 9 / 5 + 32);
           var humidity = response.main.humidity;
-         
 
+          $("#dump").empty();
 
-          console.log(name)
-          console.log(temp)
-          console.log(feelsLike)
-          console.log(tempMax)
-          console.log(tempMin)
-          console.log(humidity)
-          $("#icon").empty();
-          $("#temp").empty();
-          $("#feelsLike").empty();
-          $("#max").empty();
-          $("#min").empty();
-          $("#humidity").empty();
-        
-          
           $("#icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
           $("#temp").append("Temp <br>" + temp);
           $("#feelsLike").append("Feels <br>" + feelsLike);
           $("#max").append("Max <br>" + tempMax);
           $("#min").append("Min <br>" + tempMin);
-          $("#humidity").append("Humidity is <br>" + humidity + "%");
+          $("#humidity").append("Humidity <br>" + humidity + "%");
           $("#weather").attr("style", "visibility:visible");
         });
 
@@ -113,64 +98,16 @@ $(document).ready(function () {
               // For each climbing route construct a card containing its information and append it to results div 
               // If route has no pictures, construct it differently
               if (routes[index].imgMedium != "") {
-                var climbCardCol = $('<div class="col s4 m4 l4 ">');
-                var climbCardCard = $('<div class="card">');
-                var climbCardImgDiv = $('<div class="card-image">');
-                var climbCardImg = $('<img>');
-                climbCardImg.attr("src", routes[index].imgMedium);
-                var climbCardTitle = $('<span class="card-title picTitle">');
-                climbCardTitle.text(routes[index].name);
-                var climbCardTextDiv = $('<div class="card-content">');
-                var climbCardLocation = $('<p class="cardLocation">')
-                climbCardLocation.text(routes[index].location[0]);
-                var climbCardText = $('<p class=""></p>');
-                climbCardText.text("Type of climb: " + routes[index].type)
+                makePictureCard(routes[index].name, routes[index].imgMedium, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
 
-                var climbCardLinkDiv = $('<div class="card-action">')
-                var climbCardLink = $('<a class="" href="#">Learn More</a>');
-                climbCardLink.attr("href", routes[index].url);
-                climbCardLink.attr("target", "_blank");
-                climbCardCol.append(climbCardCard);
-                climbCardCard.append(climbCardImgDiv);
-                climbCardImgDiv.append(climbCardImg);
-                climbCardImgDiv.append(climbCardTitle);
-                climbCardCard.append(climbCardTextDiv);
-                climbCardTextDiv.append(climbCardLocation);
-                climbCardTextDiv.append(climbCardText);
-                climbCardCard.append(climbCardLinkDiv);
-                climbCardLinkDiv.append(climbCardLink);
-
-                $("#results").append(climbCardCol);
               } else {
-                var climbCardDiv = $('<div class=""></div>');
-                var climbCardCol = $('<div class="col s4 m4 l4 ">');
-                var climbCardCard = $('<div class="card">');
-                var climbCardTitle = $('<span class="card-title noPicTitle">');
-                climbCardTitle.text(routes[index].name);
-                var climbCardTextDiv = $('<div class="card-content">');
-                var climbCardLocation = $('<p class="cardLocation"></p>');
-                climbCardLocation.text(routes[index].location[0]);
-                var climbCardText = $('<p></p>');
-                climbCardText.text("Type of climb: " + routes[index].type);
-                var climbCardLinkDiv = $('<div class="card-action">')
-                var climbCardLink = $('<a href="#">Learn More</a>');
-                climbCardLink.attr("href", routes[index].url);
-                climbCardLink.attr("target", "_blank");
-                climbCardCol.append(climbCardCard);
-                climbCardCard.append(climbCardTitle);
-                climbCardCard.append(climbCardTextDiv);
-                climbCardTextDiv.append(climbCardLocation);
-                climbCardTextDiv.append(climbCardText);
-                climbCardCard.append(climbCardLinkDiv);
-                climbCardLinkDiv.append(climbCardLink);
-                $("#results").append(climbCardCol);
+                makeNoPictureCard(routes[index].name, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
 
               }
 
             });
 
           });
-
 
           // else if user chose running, get running trails in area
 
@@ -187,70 +124,18 @@ $(document).ready(function () {
             console.log(res.trails);
             var runningTrails = res.trails;
 
-
             $.each(runningTrails, function (index, value) {
 
               // For each running trail construct a card containing its information and append it to results div 
               // If trail has no pictures, construct it differently
+
               if (runningTrails[index].imgMedium != "") {
-                var runCardCol = $('<div class="col s4 m4 l4 offset-s3">');
-                var runCardCard = $('<div class="card ">');
-                var runCardImgDiv = $('<div class="card-image">');
-                var runCardImg = $('<img>');
-                runCardImg.attr("src", runningTrails[index].imgMedium);
-                var runCardTitle = $('<span class="card-title picTitle">');
-                runCardTitle.text(runningTrails[index].name);
-                var runCardTextDiv = $('<div class="card-content">');
-                var runCardLocation = $('<p class="cardLocation">')
-                runCardLocation.text(runningTrails[index].location);
-                var runCardText = $('<p class=""></p>');
-                runCardText.text(runningTrails[index].summary)
+                makePictureCard(runningTrails[index].name, runningTrails[index].imgMedium, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "")
 
-                var runCardDistance = $('<p class="distance"></p>');
-                runCardDistance.text(runningTrails[index].length + " miles");
-                var runCardLinkDiv = $('<div class="card-action">')
-                var runCardLink = $('<a class="" href="#">Learn More</a>');
-                runCardLink.attr("href", runningTrails[index].url);
-                runCardLink.attr("target", "_blank");
-                runCardCol.append(runCardCard);
-                runCardCard.append(runCardImgDiv);
-                runCardImgDiv.append(runCardImg);
-                runCardImgDiv.append(runCardTitle);
-                runCardCard.append(runCardTextDiv);
-                runCardTextDiv.append(runCardLocation);
-                runCardTextDiv.append(runCardText);
-                runCardTextDiv.append(runCardDistance);
-                runCardCard.append(runCardLinkDiv);
-                runCardLinkDiv.append(runCardLink);
-
-                $("#results").append(runCardCol);
               } else {
-                var runCardDiv = $('<div class=""></div>');
-                var runCardCol = $('<div class="col s4 m4 l4 offset-s3">');
-                var runCardCard = $('<div class="card ">');
-                var runCardTitle = $('<span class="card-title noPicTitle">');
-                runCardTitle.text(runningTrails[index].name);
-                var runCardTextDiv = $('<div class="card-content">');
-                var runCardLocation = $('<p class="cardLocation"></p>');
-                runCardLocation.text(runningTrails[index].location);
-                var runCardText = $('<p></p>');
-                runCardText.text(runningTrails[index].summary)
-                var runCardLinkDiv = $('<div class="card-action">')
-                var runCardLink = $('<a href="#">Learn More</a>');
-                runCardLink.attr("href", runningTrails[index].url);
-                runCardLink.attr("target", "_blank");
-                runCardCol.append(runCardCard);
-                runCardCard.append(runCardTitle);
-                runCardCard.append(runCardTextDiv);
-                runCardTextDiv.append(runCardLocation);
-                runCardTextDiv.append(runCardText);
-                runCardCard.append(runCardLinkDiv);
-                runCardLinkDiv.append(runCardLink);
-                $("#results").append(runCardCol);
+                makeNoPictureCard(runningTrails[index].name, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "");
 
               }
-
-
 
             });
 
@@ -270,7 +155,7 @@ $(document).ready(function () {
           }
 
           $.ajax(settings).done(function (response) {
-          
+
             // Log all bike trails in response
             console.log(response);
             var bikeTrails = response.data;
@@ -281,64 +166,15 @@ $(document).ready(function () {
               // For each biking trail construct a card containing its information and append it to results div 
               // If trail has no pictures, construct it differently
               if (bikeTrails[index].thumbnail != "") {
-                var bikeCardCol = $('<div class="col s4 m4 l4 offset-s3">');
-                var bikeCardCard = $('<div class="card ">');
-                var bikeCardImgDiv = $('<div class="card-image">');
-                var bikeCardImg = $('<img>');
-                bikeCardImg.attr("src", bikeTrails[index].thumbnail);
-                var bikeCardTitle = $('<span class="card-title picTitle">');
-                bikeCardTitle.text(bikeTrails[index].name);
-                var bikeCardTextDiv = $('<div class="card-content">');
-                var bikeCardLocation = $('<p class="cardLocation">')
-                bikeCardLocation.text(bikeTrails[index].city + ", " + bikeTrails[index].region);
-                var bikeCardText = $('<p class=""></p>');
-                bikeCardText.text(bikeTrails[index].description)
+                var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
+                makePictureCard(bikeTrails[index].name, bikeTrails[index].thumbnail, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "")
 
-                var bikeCardDistance = $('<p class="distance"></p>');
-                bikeCardDistance.text(bikeTrails[index].length + " miles");
-                var bikeCardLinkDiv = $('<div class="card-action">')
-                var bikeCardLink = $('<a class="" href="#">Learn More</a>');
-                bikeCardLink.attr("href", bikeTrails[index].url);
-                bikeCardLink.attr("target", "_blank");
-                bikeCardCol.append(bikeCardCard);
-                bikeCardCard.append(bikeCardImgDiv);
-                bikeCardImgDiv.append(bikeCardImg);
-                bikeCardImgDiv.append(bikeCardTitle);
-                bikeCardCard.append(bikeCardTextDiv);
-                bikeCardTextDiv.append(bikeCardLocation);
-                bikeCardTextDiv.append(bikeCardText);
-                bikeCardTextDiv.append(bikeCardDistance);
-                bikeCardCard.append(bikeCardLinkDiv);
-                bikeCardLinkDiv.append(bikeCardLink);
 
-                $("#results").append(bikeCardCol);
               } else {
-      
-                var bikeCardCol = $('<div class="col s4 m4 l4 offset-s3 overflow-auto" style="max-height: 100px;">');
-                var bikeCardCard = $('<div class="card ">');
-                var bikeCardTitle = $('<span class="card-title noPicTitle">');
-                bikeCardTitle.text(bikeTrails[index].name);
-                var bikeCardTextDiv = $('<div class="card-content">');
-                var bikeCardLocation = $('<p class="cardLocation"></p>');
-                bikeCardLocation.text(bikeTrails[index].city + ", " + bikeTrails[index].region);
-                var bikeCardText = $('<p></p>');
-                bikeCardText.text(bikeTrails[index].description)
-                var bikeCardLinkDiv = $('<div class="card-action">')
-                var bikeCardLink = $('<a href="#">Learn More</a>');
-                bikeCardLink.attr("href", bikeTrails[index].url);
-                bikeCardLink.attr("target", "_blank");
-                bikeCardCol.append(bikeCardCard);
-                bikeCardCard.append(bikeCardTitle);
-                bikeCardCard.append(bikeCardTextDiv);
-                bikeCardTextDiv.append(bikeCardLocation);
-                bikeCardTextDiv.append(bikeCardText);
-                bikeCardCard.append(bikeCardLinkDiv);
-                bikeCardLinkDiv.append(bikeCardLink);
-                $("#results").append(bikeCardCol);
+                var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
+                makeNoPictureCard(bikeTrails[index].name, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "");
 
               }
-
-
 
             });
           });
@@ -350,6 +186,77 @@ $(document).ready(function () {
 
   });
 
+  function makeNoPictureCard(name, url, location, description, length, type) {
+    console.log("no pictures");
+    var CardCol = $('<div class="col s4 m4 l4 offset-s3">');
+    var CardCard = $('<div class="card ">');
+    var CardTitle = $('<span class="card-title noPicTitle">');
+    CardTitle.text(name);
+    var CardTextDiv = $('<div class="card-content" id="over">');
+    var CardLocation = $('<p class="cardLocation"></p>');
+    CardLocation.text(location);
+    var CardText = $('<p></p>');
+    CardText.text(description)
+    var CardDistance = $('<p class="distance"></p>');
+    if (length === "") {
+      CardDistance.text("Type of climb: " + type);
+    } else if (type === "") {
+      CardDistance.text(length + " miles");
+    }
+    var CardLinkDiv = $('<div class="card-action">')
+    var CardLink = $('<a href="#">Learn More</a>');
+    CardLink.attr("href", url);
+    CardLink.attr("target", "_blank");
+    CardCol.append(CardCard);
+    CardCard.append(CardTitle);
+    CardCard.append(CardTextDiv);
+    CardTextDiv.append(CardLocation);
+    CardTextDiv.append(CardText);
+    CardTextDiv.append(CardDistance);
+    CardCard.append(CardLinkDiv);
+    CardLinkDiv.append(CardLink);
+    $("#results").append(CardCol);
+  }
 
+  function makePictureCard(name, picture, url, location, description, length, type) {
+    console.log("I'm making cards");
+
+    // For each running trail construct a card containing its information and append it to results div 
+    // If trail has no pictures, construct it differently
+    var CardCol = $('<div class="col s4 m4 l4 offset-s3">');
+    var CardCard = $('<div class="card ">');
+    var CardImgDiv = $('<div class="card-image">');
+    var CardImg = $('<img>');
+    CardImg.attr("src", picture);
+    var CardTitle = $('<span class="card-title picTitle">');
+    CardTitle.text(name);
+    var CardTextDiv = $('<div class="card-content" id="over">');
+    var CardLocation = $('<p class="cardLocation">')
+    CardLocation.text(location);
+    var CardText = $('<p class=""></p>');
+    CardText.text(description);
+
+    var CardDistance = $('<p class="distance"></p>');
+    if (length === "") {
+      CardDistance.text("Type of climb: " + type);
+    } else if (type === "") {
+      CardDistance.text(length + " miles");
+    }
+    var CardLinkDiv = $('<div class="card-action">')
+    var CardLink = $('<a class="" href="#">Learn More</a>');
+    CardLink.attr("href", url);
+    CardLink.attr("target", "_blank");
+    CardCol.append(CardCard);
+    CardCard.append(CardImgDiv);
+    CardImgDiv.append(CardImg);
+    CardImgDiv.append(CardTitle);
+    CardCard.append(CardTextDiv);
+    CardTextDiv.append(CardLocation);
+    CardTextDiv.append(CardText);
+    CardTextDiv.append(CardDistance);
+    CardCard.append(CardLinkDiv);
+    CardLinkDiv.append(CardLink);
+    $("#results").append(CardCol);
+  }
 
 });
