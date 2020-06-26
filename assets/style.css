@@ -34,6 +34,7 @@ margin-top: 100px;
     font-size: 17px;
     font-style: italic;
 }
+
 .card:hover { 
     border: 4px solid black;
 }
@@ -49,9 +50,14 @@ margin-top: 100px;
     width: 100%;
     margin: 0 0 20px;
     padding: 10px;
-    max-height: 600px;
-    overflow: scroll;
+    /* max-height: 600px;
+    overflow: hidden; */
     break-inside: avoid;
+}
+
+#over {
+    max-height: 300px;
+    overflow: hidden;
 }
 
 #results .card img {
@@ -68,6 +74,7 @@ margin-top: 100px;
 .card-stacked, .horizontal {
     background-color: rgba(100, 100, 100, 0.295)
 }
+
 #temp, #feelsLike, #max, #min, #humidity {
     border-right: solid 1px white;
     color:white;
