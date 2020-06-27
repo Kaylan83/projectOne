@@ -53,7 +53,7 @@ $(document).ready(function () {
         var long = coordinates.lng;
 
 
-        var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245";
+        var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";
 
 
         $.ajax({
@@ -63,10 +63,10 @@ $(document).ready(function () {
           console.log(response)
 
 
-          var temp = Math.round((response.main.temp - 273.15) * 9 / 5 + 32);
-          var feelsLike = Math.round((response.main.feels_like - 273.15) * 9 / 5 + 32);
-          var tempMax = Math.round((response.main.temp_max - 273.15) * 9 / 5 + 32);
-          var tempMin = Math.round((response.main.temp_min - 273.15) * 9 / 5 + 32);
+          var temp = (response.main.temp);
+          var feelsLike = (response.main.feels_like);
+          var tempMax = (response.main.temp_max);
+          var tempMin = (response.main.temp_min);
           var humidity = response.main.humidity;
 
           $("#dump").empty();
