@@ -2,6 +2,8 @@ $(document).ready(function () {
 
   $('select').formSelect();
 
+  var lat = 0;
+  var long = 0;
 
   //Add autocomplete functionality to our search input text field
   var input = document.getElementById('pac-input');
@@ -15,7 +17,7 @@ $(document).ready(function () {
     // Clear page from last search
     $("#results").empty();
     // $("#weather").empty();
-
+    $("p").text("");
 
     // Set filter var to activity user chose
     console.log($(".select-dropdown").val());
@@ -49,36 +51,14 @@ $(document).ready(function () {
 
         // Running Trails api request
         //Set lat and long equal to latitude and longitude from google's coordinates object
-        var lat = coordinates.lat;
-        var long = coordinates.lng;
+        lat = coordinates.lat;
+        long = coordinates.lng;
+        
+        todayWeather(lat,long);
 
+      
+       
 
-        var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";
-
-
-        $.ajax({
-          url: weatherAPI,
-          method: "GET"
-        }).then(function (response) {
-          console.log(response)
-
-
-          var temp = (response.main.temp);
-          var feelsLike = (response.main.feels_like);
-          var tempMax = (response.main.temp_max);
-          var tempMin = (response.main.temp_min);
-          var humidity = response.main.humidity;
-
-          $("#dump").empty();
-
-          $("#icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
-          $("#temp").append("Temp <br>" + temp);
-          $("#feelsLike").append("Feels <br>" + feelsLike);
-          $("#max").append("Max <br>" + tempMax);
-          $("#min").append("Min <br>" + tempMin);
-          $("#humidity").append("Humidity <br>" + humidity + "%");
-          $("#weather").attr("style", "visibility:visible");
-        });
 
         var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
 
@@ -180,10 +160,27 @@ $(document).ready(function () {
           });
 
         }
+
+
       });
 
     }
+  
 
+
+
+  });
+
+  $("#forecast").on("click", function (event) {
+    event.preventDefault();
+    forecast(lat,long);
+  });
+
+  $("#today").on("click", function (event) {
+    
+    event.preventDefault();
+    $("#weekForecast").empty();
+    $("#original").attr("style", "visibility:visible");
   });
 
   function makeNoPictureCard(name, url, location, description, length, type) {
@@ -259,4 +256,77 @@ $(document).ready(function () {
     $("#results").append(CardCol);
   }
 
+  function forecast (lat, long){
+    var forecastAPI = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long +"&exclude=hourly,minutely" + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";
+
+    $.ajax({
+      url: forecastAPI,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response)
+      $("#original").attr("style", "visibility:hidden")
+      $("#weekForecast").empty();
+      for (var i=0; i<6; i++){
+        var Date = moment.unix(response.daily[i].dt).format("l");
+
+        var forecastDiv = $('<div class = "">')
+        var forecastCard = $('<div class = " col ">');
+        var card = $('<div class = "card trans">')
+
+        var cardTitle = $('<h6>');
+        cardTitle.html(Date);
+
+        var imgDiv = $('<img>');
+        imgDiv.attr("src", "http://openweathermap.org/img/wn/" + response.daily[i].weather[0].icon+"@2x.png");
+
+        var tempDay = $('<p>');
+        tempDay.html("Day: "  + Math.round(response.daily[i].temp.day));
+
+        var tempNight = $('<p >');
+        tempNight.html("Night: "  + Math.round(response.daily[i].temp.night));
+
+        var humidity =$('<p >');
+        humidity.html("Humidity: "  + response.daily[i].humidity + "%");
+
+        var uvi = $('<p >');
+        uvi.html("UVI: "  + response.daily[i].uvi);
+        
+        card.append(cardTitle,imgDiv,tempDay,tempNight,humidity,uvi);
+        forecastCard.append(card);
+        forecastDiv.append(forecastCard);
+        $("#weekForecast").prepend(forecastDiv);
+        $("#weather").attr("style", "visibility:visible");
+      }
+    });
+  }
+  
+
+  function todayWeather (lat ,long){
+
+    var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";
+    $.ajax({
+      url: weatherAPI,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response)
+
+
+      var temp = Math.round(response.main.temp);
+      var feelsLike = Math.round(response.main.feels_like);
+      var tempMax = Math.round(response.main.temp_max);
+      var tempMin = Math.round(response.main.temp_min);
+      var humidity = response.main.humidity;
+      $("#weekForecast").empty();
+       $("#dump").empty();
+
+      $("#icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png");
+      $("#temp").append("Temp <br>" + temp);
+      $("#feelsLike").append("Feels <br>" + feelsLike);
+      $("#max").append("Max <br>" + tempMax);
+      $("#min").append("Min <br>" + tempMin);
+      $("#humidity").append("Humidity <br>" + humidity + "%");
+      $("#weather").attr("style", "visibility:visible");
+      $("#original").attr("style", "visibility:visible");
+    });
+  }
 });
