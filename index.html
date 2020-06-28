@@ -41,7 +41,7 @@
 
       </div>
       <div class="col s12 m6 l2 button-margin searchBtn">
-        <a class="waves-effect waves-light btn button"><i class="material-icons right button">cloud</i>Search</a>
+        <a class="waves-effect waves-light btn button">Search</a>
       </div>
 
 
@@ -49,13 +49,13 @@
 
     <div id="weather"  class="container center" >
       <div class="col s12 m7">
-        <div class="card horizontal">
+        <div class="card horizontal" >
           <div class="card-image">
-            <img id="icon" src="https://lorempixel.com/100/190/nature/6">
+            <img id="icon" src="">
           </div>
           <div class="card-stacked">
             <div class="card-content" style="padding-bottom: 0px;">
-              <div class="row">
+              <div class="row" id = "original">
               <div class= "col s3">
                 <p id= "temp" id="dump"></p>
               </div>
@@ -72,17 +72,16 @@
                 <p id = "humidity" id="dump"></p>
               </div>
               
-                <div class = "row ">
-                  <div class="col s12 m6 l2 button-margin searchBtn offset-l3">
-                    <a class="  waves-effect waves-light btn button"><i class="material-icons right button">cloud</i>Today</a>
-                    </div>
-                    <div class="col s12 m6 l2 button-margin searchBtn offset-l1">
-                      <a class="  waves-effect waves-light btn button"><i class="material-icons right button">cloud</i>Today</a>
-                      </div>
+            </div>
+            <div class = "row" id = "weekForecast"></div>
+            
+            <div class = "row ">
+              <div class="col s12 m6 l2 button-margin today offset-l3" id = "today">
+                <a class="  waves-effect waves-light btn button">Today</a>
                 </div>
-              
-
-
+                <div class="col s12 m6 l2 button-margin  offset-l1" id = "forecast">
+                  <a class="  waves-effect waves-light btn button">Forecast</a>
+                  </div>
             </div>
             </div>
 
@@ -101,7 +100,7 @@
 
   <!--JavaScript at end of body for optimized loading-->
 
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyJX-Kt-KlymneRkWUnMjVk1KrA3bwCD0&libraries=places"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script> -->

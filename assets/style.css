@@ -71,7 +71,13 @@ margin-top: 100px;
 }
 
 .card-stacked, .horizontal {
-    background-color: rgba(100, 100, 100, 0.295)
+    background-color: rgba(100, 100, 100, 0.295);
+}
+
+.trans {
+    background-color: rgba(100, 100, 100, 0.295);
+    color: white;
+    font-size: 15px;
 }
 
 #temp, #feelsLike, #max, #min, #humidity {
@@ -88,6 +94,7 @@ margin-top: 100px;
 .button{
     font-size: 15px;
     border-radius: 20px;
+    
 }
 
 
@@ -109,7 +116,7 @@ margin-top: 100px;
 
   
     .button{
-        font-size: 12px;
+        font-size: 10px;
        
     }
 }
