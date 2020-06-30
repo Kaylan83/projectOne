@@ -14,7 +14,9 @@ This project allows users to search for outdoor activities that they can do with
 
 **## UI Mockup**
 
-![Refresh Demo Home](RefreshDemo.png)
+![Refresh Home](assets/screenShots/screenshot1.JPG)
+![Refresh with today weather](assets/screenShots/screenshot2.JPG)
+![Refresh with forecast](assets/screenShots/screenshot3.JPG)
 
 ---
 
