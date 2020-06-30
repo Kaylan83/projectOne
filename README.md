@@ -22,13 +22,11 @@ This project allows users to search for outdoor activities that they can do with
 
 ## APIs Used
 
-- FourSquare: https://developer.foursquare.com/docs/places-api/
 - Running Trails: https://www.trailrunproject.com/data
 - Hiking Trails: https://www.hikingproject.com/data
 - Rock climbing: https://www.mountainproject.com/data
-- Outdoor Activity API: https://rapidapi.com/trailapi/api/trailapi
-- Places Api: https://developer.foursquare.com/
-- Weather API: https://developer.yahoo.com/weather/documentation.html
+- Google Places: https://developers.google.com/places/web-service/intro
+- Open Weather: https://openweathermap.org/api
 
 ---
 
