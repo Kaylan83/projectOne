@@ -28,8 +28,12 @@ $(document).ready(function () {
 
     // If search field empty tell user to fill it in, otherwise send search
     if (location == "") {
-      alert("Enter location");
+     // alert("Enter location");
+     $("#alert").text("Please Enter a Location");
+     $(".redBorder").attr("style", "visibility: visible;")
     } else {
+      $("#alert").empty();
+      $(".redBorder").attr("style", "visibility: hidden;")
       console.log("Place chosen:" + location);
       // take addresss and replace spaces with plus sign since this is the format google api requires
       var address = location.split(' ').join('+');
@@ -170,12 +174,12 @@ $(document).ready(function () {
 
 
   });
-
+  // click event to show forecast
   $("#forecast").on("click", function (event) {
     event.preventDefault();
     forecast(lat,long);
   });
-
+  // click event to show todays weather
   $("#today").on("click", function (event) {
     
     event.preventDefault();
@@ -183,6 +187,7 @@ $(document).ready(function () {
     $("#original").attr("style", "visibility:visible");
   });
 
+  // function to create cards with no picture
   function makeNoPictureCard(name, url, location, description, length, type) {
     console.log("no pictures");
     var CardCol = $('<div class="col s4 m4 l4 offset-s3">');
@@ -215,11 +220,12 @@ $(document).ready(function () {
     $("#results").append(CardCol);
   }
 
+  // function to create cards with pictures
   function makePictureCard(name, picture, url, location, description, length, type) {
     console.log("I'm making cards");
 
     // For each running trail construct a card containing its information and append it to results div 
-    // If trail has no pictures, construct it differently
+   
     var CardCol = $('<div class="col s4 m4 l4 offset-s3">');
     var CardCard = $('<div class="card ">');
     var CardImgDiv = $('<div class="card-image">');
@@ -256,6 +262,7 @@ $(document).ready(function () {
     $("#results").append(CardCol);
   }
 
+  //function to pull the forecast weather information from weather API and append it
   function forecast (lat, long){
     var forecastAPI = "https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long +"&exclude=hourly,minutely" + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";
 
@@ -300,7 +307,7 @@ $(document).ready(function () {
     });
   }
   
-
+//  function to pull today's weather information from weather API and append it
   function todayWeather (lat ,long){
 
     var weatherAPI = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=b8a12898806019a6178b169c5ea6f245" + "&units=imperial";

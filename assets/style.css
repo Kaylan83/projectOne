@@ -7,45 +7,74 @@ body{
     
 }
 h1 {
-    font-family: 'Roboto Bold', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
+/* adding a red border around the alert if a user does not enter a location */
+.redBorder{
+    border: red 1px solid;
+    visibility: hidden;
+}
+
+/* pushes all page content down */
 .margin-top{
 margin-top: 100px;
 
 }
 
+/* align the button with the search bar */
 .button-margin {
     margin-top: 20px;
 }
 
-
+/* styling cards text */
 .cardLocation {
     font-size: 20px;
     font-weight: 600;
 }
+/* styling the no picture cards' title */
 .noPicTitle {
     font-size:25px;
     font-weight: 600;
 }
-
+/* styling the distent text */
 .distance {
     font-weight: 600;
     font-size: 17px;
     font-style: italic;
 }
 
-.float {
-    float: left;
+/* transparent background for the weather card */
+.card-stacked, .horizontal {
+    background-color: rgba(100, 100, 100, 0.295);
+}
+/* forcast cards transparent background */
+.trans {
+    background-color: rgba(100, 100, 100, 0.295);
+    color: white;
+    font-size: 15px;
 }
 
+/* white border after todays weather details */
+.border {
+    border-right: solid 1px white;
+    color:white; 
+}
+
+/* styling button text */
+.button{
+    font-size: 15px;
+    border-radius: 20px;
+    
+}
+/* making columns for results to be reponsive */
 #results {
     width: 1200px;
     margin: 20px auto;
     columns: 4;
     column-gap: 40px;
 }
-
+/* styling the card for responsive design */
 #results .card {
     width: 100%;
     margin: 0 0 20px;
@@ -53,49 +82,28 @@ margin-top: 100px;
     break-inside: avoid;
 
 }
-
+/* making sure cards are not too long */
 #over {
     max-height: 400px;
     overflow: hidden;
 }
-
+/* styling card image */
 #results .card img {
     max-width: 100%;
 }
-
+/* styling weather container */
 #weather{
     visibility: hidden;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 
 }
-
-.card-stacked, .horizontal {
-    background-color: rgba(100, 100, 100, 0.295);
-}
-
-.trans {
-    background-color: rgba(100, 100, 100, 0.295);
-    color: white;
-    font-size: 15px;
-}
-
+/* styling weather information */
 #temp, #feelsLike, #max, #min, #humidity {
     border-right: solid 1px white;
     color:white;
-    
-} */
-
-.border {
-    border-right: solid 1px white;
-    color:white; 
-}
-
-.button{
-    font-size: 15px;
-    border-radius: 20px;
-    
-}
+    margin-left: -20px;
+} 
 
 
 
@@ -124,6 +132,7 @@ margin-top: 100px;
 
 
 @media (max-width:768px){
+
     #results {
         columns: 1;
 
@@ -132,14 +141,18 @@ margin-top: 100px;
     #weather{
         visibility: hidden;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 10px;
-        font-weight: bold;
+        font-size: 15px;
+        font-weight: normal;
     
     }
 
 .button{
     font-size: 10px;
    
+}
+
+#icon {
+    max-width: 70px;
 }
   
 }
