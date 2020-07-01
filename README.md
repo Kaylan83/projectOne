@@ -1,18 +1,17 @@
-# Refresh
-## Group Project 1
+# Project Refresh
 
 ---
 
-**# Project Refresh**
-**## Murad Alkaylanie, Macenna Cowen, Sulayman Sallah**
+Murad Alkaylanie, Macenna Cowen, Sulayman Sallah
 
-**## Description**
+
+Description:
 
 This project allows users to search for outdoor activities that they can do within a certain distance of their location.
 
 ---
 
-**## UI Mockup**
+## UI Mockup
 
 ![Refresh Home](assets/screenShots/screenshot1.JPG)
 ![Refresh with today weather](assets/screenShots/screenshot2.JPG)
@@ -23,7 +22,7 @@ This project allows users to search for outdoor activities that they can do with
 ## APIs Used
 
 - Running Trails: https://www.trailrunproject.com/data
-- Hiking Trails: https://www.hikingproject.com/data
+- Biking Trails: https://rapidapi.com/trailapi/api/trailapi
 - Rock climbing: https://www.mountainproject.com/data
 - Google Places: https://developers.google.com/places/web-service/intro
 - Open Weather: https://openweathermap.org/api
