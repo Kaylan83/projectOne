@@ -16,6 +16,12 @@ h1 {
     visibility: hidden;
 }
 
+/* adding a red border around the alert if a user does not choose activity */
+.activityRedBorder{
+    border: red 1px solid;
+    visibility: hidden;
+}
+
 /* pushes all page content down */
 .margin-top{
 margin-top: 100px;
@@ -25,6 +31,7 @@ margin-top: 100px;
 /* align the button with the search bar */
 .button-margin {
     margin-top: 20px;
+    
 }
 
 /* styling cards text */
@@ -63,9 +70,9 @@ margin-top: 100px;
 
 /* styling button text */
 .button{
-    font-size: 15px;
+    font-size: 20px;
     border-radius: 20px;
-    
+       
 }
 /* making columns for results to be reponsive */
 #results {

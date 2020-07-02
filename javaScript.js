@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
   $('select').formSelect();
+  
 
   var lat = 0;
   var long = 0;
@@ -20,9 +21,8 @@ $(document).ready(function () {
     $("p").text("");
 
     // Set filter var to activity user chose
-    console.log($(".select-dropdown").val());
     var filter = $(".select-dropdown").val();
-
+    console.log(filter);
     // Set var location equal to location selected by user from autocomplete list
     var location = $("#pac-input").val();
 
@@ -30,10 +30,10 @@ $(document).ready(function () {
     if (location == "") {
      // alert("Enter location");
      $("#alert").text("Please Enter a Location");
-     $(".redBorder").attr("style", "visibility: visible;")
+     $(".redBorder").attr("style", "visibility: visible;");
     } else {
       $("#alert").empty();
-      $(".redBorder").attr("style", "visibility: hidden;")
+      $(".redBorder").attr("style", "visibility: hidden;");
       console.log("Place chosen:" + location);
       // take addresss and replace spaces with plus sign since this is the format google api requires
       var address = location.split(' ').join('+');
@@ -60,111 +60,121 @@ $(document).ready(function () {
         
         todayWeather(lat,long);
 
-      
-       
+      // if the user does not choose an activity show this alert
+        if (filter === "Choose Activity"){
+          $("#activityAlert").text("Please choose activity");
+          $(".activityRedBorder").attr("style", "visibility:visible");
+          
+        } else {
+          // if the user choose activity hide alert and pull information
+          $("#activityAlert").empty();
+          $(".activityRedBorder").attr("style", "visibility:hidden");
 
+          var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
 
-        var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
-
-        // If user chose rock climbing, get climbing sites
-        if (filter === "Rock Climbing") {
-          $.ajax({
-            url: climbingURL,
-            method: "GET"
-          }).then(function (res) {
-
-            // Log all trails in response
-            console.log(res.routes);
-            var routes = res.routes;
-
-            $.each(routes, function (index, value) {
-
-              // For each climbing route construct a card containing its information and append it to results div 
-              // If route has no pictures, construct it differently
-              if (routes[index].imgMedium != "") {
-                makePictureCard(routes[index].name, routes[index].imgMedium, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
-
-              } else {
-                makeNoPictureCard(routes[index].name, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
-
-              }
-
+          // If user chose rock climbing, get climbing sites
+          if (filter === "Rock Climbing") {
+            $.ajax({
+              url: climbingURL,
+              method: "GET"
+            }).then(function (res) {
+  
+              // Log all trails in response
+              console.log(res.routes);
+              var routes = res.routes;
+  
+              $.each(routes, function (index, value) {
+  
+                // For each climbing route construct a card containing its information and append it to results div 
+                // If route has no pictures, construct it differently
+                if (routes[index].imgMedium != "") {
+                  makePictureCard(routes[index].name, routes[index].imgMedium, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
+  
+                } else {
+                  makeNoPictureCard(routes[index].name, routes[index].url, routes[index].location, routes[index].summary, "", routes[index].type);
+  
+                }
+  
+              });
+  
             });
-
-          });
-
-          // else if user chose running, get running trails in area
-
-        } else if (filter === "Running") {
-
-          // add lat and long to running trails request url
-          var runningURL = "https://www.trailrunproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-fc87acc5b1a3694eb83d3a30cc324456";
-          $.ajax({
-            url: runningURL,
-            method: "GET"
-          }).then(function (res) {
-
-            // Log all trails in response
-            console.log(res.trails);
-            var runningTrails = res.trails;
-
-            $.each(runningTrails, function (index, value) {
-
-              // For each running trail construct a card containing its information and append it to results div 
-              // If trail has no pictures, construct it differently
-
-              if (runningTrails[index].imgMedium != "") {
-                makePictureCard(runningTrails[index].name, runningTrails[index].imgMedium, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "")
-
-              } else {
-                makeNoPictureCard(runningTrails[index].name, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "");
-
-              }
-
+  
+            // else if user chose running, get running trails in area
+  
+          } else if (filter === "Running") {
+  
+            // add lat and long to running trails request url
+            var runningURL = "https://www.trailrunproject.com/data/get-trails?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-fc87acc5b1a3694eb83d3a30cc324456";
+            $.ajax({
+              url: runningURL,
+              method: "GET"
+            }).then(function (res) {
+  
+              // Log all trails in response
+              console.log(res.trails);
+              var runningTrails = res.trails;
+  
+              $.each(runningTrails, function (index, value) {
+  
+                // For each running trail construct a card containing its information and append it to results div 
+                // If trail has no pictures, construct it differently
+  
+                if (runningTrails[index].imgMedium != "") {
+                  makePictureCard(runningTrails[index].name, runningTrails[index].imgMedium, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "")
+  
+                } else {
+                  makeNoPictureCard(runningTrails[index].name, runningTrails[index].url, runningTrails[index].location, runningTrails[index].summary, runningTrails[index].length, "");
+  
+                }
+  
+              });
+  
+  
             });
-
-
-          });
-        } else if (filter === "Biking") {
-          // add lat and long to running trails request url
-          var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://trailapi-trailapi.p.rapidapi.com/trails/explore/?per_page=40&lat=" + lat + "&lon=" + long + "",
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "trailapi-trailapi.p.rapidapi.com",
-              "x-rapidapi-key": "a2bf636d02msh0285b0bad0d167cp1bad37jsn53ce1d57c625"
+          } else if (filter === "Biking") {
+            // add lat and long to running trails request url
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://trailapi-trailapi.p.rapidapi.com/trails/explore/?per_page=40&lat=" + lat + "&lon=" + long + "",
+              "method": "GET",
+              "headers": {
+                "x-rapidapi-host": "trailapi-trailapi.p.rapidapi.com",
+                "x-rapidapi-key": "a2bf636d02msh0285b0bad0d167cp1bad37jsn53ce1d57c625"
+              }
             }
-          }
-
-          $.ajax(settings).done(function (response) {
-
-            // Log all bike trails in response
-            console.log(response);
-            var bikeTrails = response.data;
-
-
-            $.each(bikeTrails, function (index, value) {
-
-              // For each biking trail construct a card containing its information and append it to results div 
-              // If trail has no pictures, construct it differently
-              if (bikeTrails[index].thumbnail != "") {
-                var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
-                makePictureCard(bikeTrails[index].name, bikeTrails[index].thumbnail, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "")
-
-
-              } else {
-                var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
-                makeNoPictureCard(bikeTrails[index].name, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "");
-
-              }
-
+  
+            $.ajax(settings).done(function (response) {
+  
+              // Log all bike trails in response
+              console.log(response);
+              var bikeTrails = response.data;
+  
+  
+              $.each(bikeTrails, function (index, value) {
+  
+                // For each biking trail construct a card containing its information and append it to results div 
+                // If trail has no pictures, construct it differently
+                if (bikeTrails[index].thumbnail != "") {
+                  var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
+                  makePictureCard(bikeTrails[index].name, bikeTrails[index].thumbnail, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "")
+  
+  
+                } else {
+                  var bikeLocation = bikeTrails[index].city + ", " + bikeTrails[index].region;
+                  makeNoPictureCard(bikeTrails[index].name, bikeTrails[index].url, bikeLocation, bikeTrails[index].description, bikeTrails[index].length, "");
+  
+                }
+  
+              });
             });
-          });
-
+  
+          }
         }
 
+
+
+  
 
       });
 
