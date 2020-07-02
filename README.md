@@ -10,6 +10,9 @@ Description:
 This project allows users to search for outdoor activities that they can do within a certain distance of their location.
 
 ---
+Application link: https://kaylan83.github.io/projectOne/
+
+---
 
 ## UI Mockup
 
