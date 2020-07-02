@@ -70,10 +70,12 @@ $(document).ready(function () {
           $("#activityAlert").empty();
           $(".activityRedBorder").attr("style", "visibility:hidden");
 
-          var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
+          
 
           // If user chose rock climbing, get climbing sites
           if (filter === "Rock Climbing") {
+            
+            var climbingURL = "https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=" + lat + "&lon=" + long + "&maxResults=40&key=200808437-5c194f26f18e2d8e6eb6bbb14913e599";
             $.ajax({
               url: climbingURL,
               method: "GET"
@@ -205,11 +207,11 @@ $(document).ready(function () {
     var CardTitle = $('<span class="card-title noPicTitle">');
     CardTitle.text(name);
     var CardTextDiv = $('<div class="card-content" id="over">');
-    var CardLocation = $('<p class="cardLocation"></p>');
+    var CardLocation = $('<p class="cardLocation">');
     CardLocation.text(location);
-    var CardText = $('<p></p>');
+    var CardText = $('<p>');
     CardText.text(description)
-    var CardDistance = $('<p class="distance"></p>');
+    var CardDistance = $('<p class="distance">');
     if (length === "") {
       CardDistance.text("Type of climb: " + type);
     } else if (type === "") {
@@ -234,7 +236,7 @@ $(document).ready(function () {
   function makePictureCard(name, picture, url, location, description, length, type) {
     console.log("I'm making cards");
 
-    // For each running trail construct a card containing its information and append it to results div 
+    // For each trail construct a card containing its information and append it to results div 
    
     var CardCol = $('<div class="col s4 m4 l4 offset-s3">');
     var CardCard = $('<div class="card ">');
@@ -246,10 +248,10 @@ $(document).ready(function () {
     var CardTextDiv = $('<div class="card-content" id="over">');
     var CardLocation = $('<p class="cardLocation">')
     CardLocation.text(location);
-    var CardText = $('<p class=""></p>');
+    var CardText = $('<p class="">');
     CardText.text(description);
 
-    var CardDistance = $('<p class="distance"></p>');
+    var CardDistance = $('<p class="distance">');
     if (length === "") {
       CardDistance.text("Type of climb: " + type);
     } else if (type === "") {
