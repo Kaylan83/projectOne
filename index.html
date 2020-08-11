@@ -2,67 +2,104 @@
 <html>
 
 <head>
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"> -->
+  <title>Re:fresh</title>
+   <!-- materialize style sheet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
   <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-
-  <link rel="stylesheet" href="assets/style.css">
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
-
+  <!-- Title and input container -->
   <div class="container center margin-top">
     <div class="row">
-      <h1 class="col s12"> Re:Fresh</h1>
+      <h1 class="col s12">Re:Fresh</h1>
+      <h5> Find your own way</h5>
     </div>
-    <div class="row center">
-      <div id="selected" class="input-field col s3 offset-s3">
+    <div class="row center ">
+
+      <div id="selected" class="input-field  col s12 m6 l2 offset-l3 ">
         <select>
-          <option value="" disabled selected> Choose Activities</option>
-          <option value="running">Biking-Running</option>
-          <!-- <option value="biking">Biking</option> -->
+          <option value="" disabled selected>Choose Activity</option>
+          <option value="running">Running</option>
+          <option value="biking">Biking</option>
           <option value="climbing">Rock Climbing</option>
         </select>
-
+        <p class="activityRedBorder" id="activityAlert"></p>
       </div>
-      <div class="input-field col s2 ">
-        <input id="pac-input" type="text" class="controls">
-        <!-- <label for="pac-input">Enter City</label> -->
+      <div class="input-field col s12 m6 l2 ">
+        <input id="pac-input" type="text" class="controls ">
+        <p class="redBorder" id="alert"></p>
         <div id="map-canvas"></div>
-
-
       </div>
-      <div class="col M2 button-margin searchBtn">
-        <a class="waves-effect waves-light btn "><i class="material-icons right ">cloud</i>Search</a>
+      <div class="col s12 m6 l2 button-margin">
+        <a class=" btn button searchBtn">Search</a>
+      </div>
+    </div>
+    
+    <!-- weather container -->
+    <div id="weather" class="container center">
+      <div class="col s12 m7">
+        <div class="card horizontal">
+          <div class="card-image">
+            <img id="icon" src="">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content" style="padding-bottom: 0px;">
+              <div class="row" id="original">
+                <div class="col s3">
+                  <p id="temp" id="dump"></p>
+                </div>
+                <div class="col m2">
+                  <p id="feelsLike" id="dump"></p>
+                </div>
+                <div class="col m2">
+                  <p id="max" id="dump"></p>
+                </div>
+                <div class="col m2">
+                  <p id="min" id="dump"></p>
+                </div>
+                <div class="col s3">
+                  <p id="humidity" id="dump"></p>
+                </div>
 
+              </div>
+              <div class="row" id="weekForecast"></div>
+
+              <div class="row ">
+                <div class="col s12 m6 l2 button-margin today offset-l3" id="today">
+                  <a class="  waves-effect waves-light btn button">Today</a>
+                </div>
+                <div class="col s12 m6 l2 button-margin  offset-l1" id="forecast">
+                  <a class="  waves-effect waves-light btn button">Forecast</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
+    </div>
+
+    <!-- The results container -->
+    <div id="results" class="container center">
 
     </div>
 
-    <div id="weather"  class="container center" >
-      
-    </div>
-    <div id="results"  class="container center" >
-      
-    </div>
 
-  
-
+  </div>
 
 
   <!--JavaScript at end of body for optimized loading-->
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyJX-Kt-KlymneRkWUnMjVk1KrA3bwCD0&libraries=places"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="javaScript.js"></script>
 
